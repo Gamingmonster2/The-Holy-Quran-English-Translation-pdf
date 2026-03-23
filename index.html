@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Holy Quran - English Translation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --bg-light: #f8f9fa;
+            --text-light: #1a202c;
+            --bg-dark: #1a202c;
+            --text-dark: #f7fafc;
+            --panel-light: #ffffff;
+            --panel-dark: #2d3748;
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        body.light-mode {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        .viewer-container {
+            flex-grow: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .ornament {
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
+
+        /* Custom Toggle Switch */
+        .toggle-checkbox {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .toggle-slot {
+            position: relative;
+            height: 32px;
+            width: 60px;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            background-color: #cbd5e0;
+            transition: background-color 250ms;
+            cursor: pointer;
+        }
+
+        .toggle-checkbox:checked ~ .toggle-slot {
+            background-color: var(--primary-gold);
+            border-color: var(--primary-gold);
+        }
+
+        .toggle-button {
+            transform: translate(2px, 2px);
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 250ms;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .toggle-checkbox:checked ~ .toggle-slot .toggle-button {
+            transform: translate(30px, 2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        body.dark-mode footer {
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .heart-beat {
+            display: inline-block;
+            animation: beat 1.5s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body class="light-mode">
+
+    <!-- Header -->
+    <header class="w-full p-4 shadow-md transition-colors duration-300" id="main-header">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl">📖</span>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold text-yellow-600 dark:text-yellow-400">The Holy Quran</h1>
+                    <p class="text-xs opacity-75">English Translation (Sahih International)</p>
+                </div>
+            </div>
+
+            <!-- Dark Mode Toggle -->
+            <div class="flex items-center gap-2">
+                <span class="text-sm hidden md:inline opacity-70">Theme</span>
+                <label>
+                    <input class="toggle-checkbox" type="checkbox" id="darkModeToggle">
+                    <div class="toggle-slot">
+                        <div class="toggle-button" id="toggleIcon">☀️</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="viewer-container">
+        <div class="text-center mb-4">
+            <span class="ornament">۞</span>
+            <span class="text-lg font-serif italic opacity-90">"Read in the name of your Lord who created"</span>
+            <span class="ornament">۞</span>
+        </div>
+
+        <!-- PDF Viewer -->
+        <!-- Converting /view to /preview for embed mode -->
+        <iframe 
+            src="https://drive.google.com/file/d/1Gh7Ls3-NkHRVq4bqtJNKQRAckeNazw-S/preview" 
+            class="pdf-frame" 
+            allow="autoplay">
+        </iframe>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="flex flex-col items-center justify-center gap-2">
+            <p class="font-semibold text-yellow-600 dark:text-yellow-400">
+                صدقة جارية
+            </p>
+            <p class="opacity-75">
+                Sadaqah Jariyah for its owner <span class="heart-beat">💚</span>
+            </p>
+            <p class="text-xs opacity-50 mt-2">
+                Please remember us in your prayers.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const toggleCheckbox = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const toggleIcon = document.getElementById('toggleIcon');
+        const header = document.getElementById('main-header');
+
+        // Check for saved preference
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            header.classList.add('bg-gray-800');
+            header.classList.remove('bg-white');
+            toggleCheckbox.checked = true;
+            toggleIcon.innerHTML = '🌙';
+        } else {
+            header.classList.add('bg-white');
+        }
+
+        toggleCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                // Switch to Dark
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                header.classList.remove('bg-white');
+                header.classList.add('bg-gray-800');
+                toggleIcon.innerHTML = '🌙';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                // Switch to Light
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                header.classList.remove('bg-gray-800');
+                header.classList.add('bg-white');
+                toggleIcon.innerHTML = '☀️';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>
