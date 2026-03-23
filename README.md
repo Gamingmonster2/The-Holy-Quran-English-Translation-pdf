@@ -17,7 +17,7 @@
 
 ## 📥 التحميل (Download)
 يمكنك تحميل أحدث نسخة من ملف الترجمة مباشرة عبر الرابط التالي:
-👉 **[تحميل ملف PDF من هنا](./The-Holy-Quran-English-Translation.pdf)**
+👉 **[تحميل ملف PDF من هنا](.[/The-Holy-Quran-English-Translation.pdf)](https://files.alislam.cloud/pdf/Holy-Quran-English.pdf)**
 
 ---
 
